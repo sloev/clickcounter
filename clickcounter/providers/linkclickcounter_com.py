@@ -1,3 +1,4 @@
+import time
 from clickcounter.providers._base import BaseProvider
 from clickcounter import _utils
 
@@ -28,6 +29,7 @@ class LinkClickCounterCom(BaseProvider):
             "innerURLSubmit": "START MONITORING !"
         }, headers={
             'content-type': 'application/x-www-form-urlencoded'}).text
+
         rows = self._get_raw_rows()
         selected_row = [r for r in rows if r['Monitored URL'] == url]
         if not selected_row:
@@ -45,6 +47,14 @@ class LinkClickCounterCom(BaseProvider):
         rows = self._get_raw_rows()
         return {r['Shorten URL']: int(r['Clicks Counter']) for r in rows}
 
-    def _get_raw_rows(self):
-        response = self.session.get(ANALYTICS_URL_TEMPLATE)
-        return _utils.extract_table_rows_from_html_string(response.content)
+    def _get_raw_rows(self, max_tries=5):
+        response = None
+        for try_number in range(1, max_tries+1):
+            try:
+                response = self.session.get(ANALYTICS_URL_TEMPLATE)
+                return _utils.extract_table_rows_from_html_string(response.content)
+            except:
+                if try_number >= max_tries:
+                    raise Exception(
+                        f"Error during fetch of monitoring rows, last response: {response}")
+            time.sleep(try_number)
