@@ -3,8 +3,9 @@ import time
 from clickcounter import LinkClickCounterCom
 
 c = LinkClickCounterCom()
-c.login(os.environ.get("CLICK_COUNTER_USERNAME"),
-        os.environ.get("CLICK_COUNTER_PASSWORD"))
+c.login(
+    os.environ.get("CLICK_COUNTER_USERNAME"), os.environ.get("CLICK_COUNTER_PASSWORD")
+)
 
 
 track_url = c.register_url(os.environ.get("CLICK_COUNTER_URL"))
