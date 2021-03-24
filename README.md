@@ -51,7 +51,7 @@ print(second_count)
 
 **more examples here:**
 
-* [shorturl.at example](https://github.com/sloev/clickcounter/blob/master/examples/shorturl_at.py)
+* [shorturl.at example](https://github.com/sloev/clickcounter/blob/master/examples/test_shorturl_at.py)
 * [linkclickcounter.com example](https://github.com/sloev/clickcounter/blob/master/examples/test_linkclickcounter_com.py)
 
 ## Usage (CLI)
