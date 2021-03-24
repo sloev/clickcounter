@@ -1,9 +1,10 @@
 [tool.poetry]
 name = "clickcounter"
-version = "1.0.2"
-description = ""
+version = "1.0.3"
+description = "Create redirect url's with click monitoring from multiple providers"
 authors = ["Johannes Valbjorn <johannes.valbjorn@gmail.com>"]
 license = "MIT"
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
