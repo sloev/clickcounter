@@ -1,10 +1,7 @@
 from clickcounter.providers.shorturl_at import ShortUrlAt
 from clickcounter.providers.linkclickcounter_com import LinkClickCounterCom
 
-providers = {
-    "shorturl.at": ShortUrlAt,
-    "linkclickcounter.com": LinkClickCounterCom
-}
+providers = {"shorturl.at": ShortUrlAt, "linkclickcounter.com": LinkClickCounterCom}
 
 _default_provider_singleton = ShortUrlAt()
 
