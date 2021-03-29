@@ -13,12 +13,14 @@ class ShortUrlAt(BaseProvider):
             REGISTER_URL,
             data={"u": url},
             headers={"content-type": "application/x-www-form-urlencoded"},
-        ).text
+        )
 
-        url_id = response.split("url-total-clicks.php?u=shorturl.at/")[1].split('">')[0]
+        url_id = response.text.split(
+            "url-total-clicks.php?u=shorturl.at/")[1].split('">')[0]
         return TRACK_URL_TEMPLATE.format(url_id)
 
     def get_visits(self, track_url):
-        analytics_url = ANALYTICS_URL_TEMPLATE.format(track_url.split("https://")[-1])
+        analytics_url = ANALYTICS_URL_TEMPLATE.format(
+            track_url.split("https://")[-1])
         response = self.session.get(analytics_url).text
         return int(response.split('<div class="squarebox"><b>')[1].split("<")[0])
